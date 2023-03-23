@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using TradingBot.Tool;
 
 namespace TradingBot.ChartService;
 
@@ -27,6 +28,8 @@ public interface IChartService
     public event Action<ChartDataPoint> ChartUpdated;
 
     public event Action<DateTime> DataInitialized;
+    
+    public IEnumerable<ITool> Tools { get; }
 
     public Task<ChartDataPoint> UpdateChart();
 

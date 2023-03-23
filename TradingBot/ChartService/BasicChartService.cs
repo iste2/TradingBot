@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using TradingBot.Tool;
 
 namespace TradingBot.ChartService;
 
@@ -11,6 +12,7 @@ public abstract class BasicChartService : IChartService
     public ObservableCollection<ChartDataPoint> ChartDataPoints { get; } = new ObservableCollection<ChartDataPoint>();
     public event Action<ChartDataPoint>? ChartUpdated;
     public event Action<DateTime>? DataInitialized;
+    public IEnumerable<ITool> Tools { get; } = new List<ITool>();
 
     public virtual Task<ChartDataPoint> UpdateChart()
     {
@@ -31,6 +33,10 @@ public abstract class BasicChartService : IChartService
             var hTime = DateTime.Now - hTimeOfPreviousUpdate;
             if (hTime.TotalSeconds < AimedUpdateInterval) continue;
             var hNewChartDataPoint = UpdateChart().Result;
+            foreach (var tool in Tools)
+            {
+                tool.CalculateDataPoint(ChartDataPoints, hNewChartDataPoint);
+            }
             ChartDataPoints.Add(hNewChartDataPoint);
             if(ChartDataPoints.Count > MaxNumberOfDataPoints) ChartDataPoints.RemoveAt(0);
             ChartUpdated?.Invoke(hNewChartDataPoint);

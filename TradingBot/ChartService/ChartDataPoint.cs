@@ -1,9 +1,22 @@
 ﻿using System.Text;
 using Spectre.Console;
+using TradingBot.Tool;
 
 namespace TradingBot.ChartService;
 
-public class ChartDataPoint
+public interface IChartDataPoint : IMovingAverageConvergenceDivergenceIndicatorDataPoint
+{
+    public double Volume { get; set; }
+    public double ClosePrice { get; set; }
+    public double OpenPrice { get; set; }
+    public double HighPrice { get; set; }
+    public double LowPrice { get; set; }
+    public double VolumeWeightedAveragePrice { get; set; }
+    public DateTime OpenTime { get; set; }
+    public int TradeCount { get; set; }
+}
+
+public class ChartDataPoint : IChartDataPoint
 {
     public double Volume { get; set; }
     public double ClosePrice { get; set; }
@@ -27,4 +40,7 @@ public class ChartDataPoint
         hReturnStringBuilder.Append("}]");
         return hReturnStringBuilder.ToString();
     }
+
+    public double Signal { get; set; }
+    public double Macd { get; set; }
 }
