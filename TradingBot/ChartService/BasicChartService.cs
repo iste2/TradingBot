@@ -24,9 +24,9 @@ public abstract class BasicChartService : IChartService
             var hTime = DateTime.Now - hTimeOfPreviousUpdate;
             if (hTime.TotalSeconds < AimedUpdateInterval) continue;
             var hNewChartDataPoint = UpdateChart().Result;
-            ChartUpdated?.Invoke(hNewChartDataPoint);
             ChartDataPoints.Add(hNewChartDataPoint);
             if(ChartDataPoints.Count > MaxNumberOfDataPoints) ChartDataPoints.RemoveAt(0);
+            ChartUpdated?.Invoke(hNewChartDataPoint);
             hTimeOfPreviousUpdate = DateTime.Now;
         }
         
