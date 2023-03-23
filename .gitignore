@@ -10,4 +10,7 @@ obj/
 /node_modules
 /wwwroot/node_modules
 
+# Rider
+.idea
+
 # End of https://www.toptal.com/developers/gitignore/api/dotnetcore
