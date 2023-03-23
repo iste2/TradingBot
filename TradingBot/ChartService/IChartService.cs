@@ -26,7 +26,11 @@ public interface IChartService
      */
     public event Action<ChartDataPoint> ChartUpdated;
 
+    public event Action<DateTime> DataInitialized;
+
     public Task<ChartDataPoint> UpdateChart();
+
+    public Task InitializeData();
 
     public void Run();
 

@@ -10,10 +10,17 @@ public abstract class BasicChartService : IChartService
     public int MaxNumberOfDataPoints { get; set; }
     public ObservableCollection<ChartDataPoint> ChartDataPoints { get; } = new ObservableCollection<ChartDataPoint>();
     public event Action<ChartDataPoint>? ChartUpdated;
+    public event Action<DateTime>? DataInitialized;
 
     public virtual Task<ChartDataPoint> UpdateChart()
     {
         throw new NotImplementedException();
+    }
+
+    public virtual Task InitializeData()
+    {
+        DataInitialized?.Invoke(DateTime.Now);
+        return Task.CompletedTask;
     }
 
     public void Run()
@@ -37,6 +44,7 @@ public abstract class BasicChartService : IChartService
     public void Start()
     {
         Running = true;
+        InitializeData();
         Run();
     }
 }

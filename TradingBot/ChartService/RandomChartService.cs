@@ -17,6 +17,6 @@ public class RandomChartService : BasicChartService
         var hPercentage = hRandom.Next(0, 15) / 100.0;
         var hNewValue = hDirectionUp ? LastValue * (1.0 + hPercentage) : LastValue * (1.0 - hPercentage/2);
         LastValue = hNewValue;
-        return Task.FromResult(new ChartDataPoint() { Value = hNewValue, DateTime = DateTime.Now });
+        return Task.FromResult(new ChartDataPoint() { ClosePrice = hNewValue, OpenTime = DateTime.Now });
     }
 }

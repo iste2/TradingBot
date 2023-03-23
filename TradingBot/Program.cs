@@ -8,6 +8,13 @@ AnsiConsole.Write(new Padder(new FigletText("CF").LeftJustified().Color(Color.Or
 var hKrakenChartService = new KrakenChartService(new KrakenClient(new KrakenClientOptions()));
 hKrakenChartService.ChartUpdated += point =>
 {
-    Console.WriteLine(point.Value);
+    Console.WriteLine(point.ToString());
+};
+hKrakenChartService.DataInitialized += time =>
+{
+    foreach (var chartDataPoint in hKrakenChartService.ChartDataPoints)
+    {
+        Console.WriteLine(chartDataPoint);
+    }
 };
 hKrakenChartService.Start();
