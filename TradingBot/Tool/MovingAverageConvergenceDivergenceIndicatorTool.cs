@@ -1,4 +1,5 @@
-﻿using TradingBot.ChartService;
+﻿using System.Collections.ObjectModel;
+using TradingBot.ChartService;
 
 namespace TradingBot.Tool;
 
@@ -82,11 +83,13 @@ public class MovingAverageConvergenceDivergenceIndicatorTool : ITool
         
         if (_confirmationPeriodCounter > 0) return;
         
+        Signals.Add(_currentBasicSignalToBeConfirmed);
         SignalGenerated?.Invoke(_currentBasicSignalToBeConfirmed);
         _currentBasicSignalToBeConfirmed = null;
     }
 
     public event Action<IToolSignal>? SignalGenerated;
+    public ObservableCollection<IToolSignal> Signals { get; set; } = new ObservableCollection<IToolSignal>();
 
     private BasicSignal? _currentBasicSignalToBeConfirmed;
     private int _confirmationPeriodCounter;

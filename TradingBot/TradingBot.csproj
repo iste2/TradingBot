@@ -16,6 +16,7 @@
 
     <ItemGroup>
       <PackageReference Include="KrakenExchange.Net" Version="3.1.7" />
+      <PackageReference Include="ScottPlot" Version="5.0.2-beta" />
       <PackageReference Include="Spectre.Console" Version="0.46.1-preview.0.18" />
     </ItemGroup>
 

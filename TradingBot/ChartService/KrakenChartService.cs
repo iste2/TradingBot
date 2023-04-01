@@ -12,10 +12,10 @@ public class KrakenChartService : BasicChartService
     
     public KlineInterval KlineInterval { get; set; }
     
-    public KrakenChartService(KrakenClient krakenClient)
+    public KrakenChartService(KrakenClient krakenClient, KlineInterval klineInterval = KlineInterval.OneMinute)
     {
         KrakenClient = krakenClient;
-        KlineInterval = KlineInterval.OneMinute;
+        KlineInterval = klineInterval;
         AimedUpdateInterval = (double) KlineInterval;
         MaxNumberOfDataPoints = 200;
     }

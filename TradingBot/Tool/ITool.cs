@@ -1,4 +1,5 @@
-﻿using TradingBot.ChartService;
+﻿using System.Collections.ObjectModel;
+using TradingBot.ChartService;
 
 namespace TradingBot.Tool;
 
@@ -21,4 +22,5 @@ public interface ITool
         int? indexOfLastChartDataPoint = null);
 
     public event Action<IToolSignal>? SignalGenerated;
+    public ObservableCollection<IToolSignal> Signals { get; set; }
 }
