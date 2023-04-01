@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingBot", "TradingBot\TradingBot.csproj", "{81713408-4798-43F5-96C7-A1744B627565}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingBot.Tests", "TradingBot.Tests\TradingBot.Tests.csproj", "{0B27E321-AE6F-416E-A38E-F8920C2E3336}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{81713408-4798-43F5-96C7-A1744B627565}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81713408-4798-43F5-96C7-A1744B627565}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81713408-4798-43F5-96C7-A1744B627565}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B27E321-AE6F-416E-A38E-F8920C2E3336}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B27E321-AE6F-416E-A38E-F8920C2E3336}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B27E321-AE6F-416E-A38E-F8920C2E3336}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B27E321-AE6F-416E-A38E-F8920C2E3336}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
