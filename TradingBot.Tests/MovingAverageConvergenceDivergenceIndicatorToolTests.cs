@@ -45,5 +45,6 @@ public class MovingAverageConvergenceDivergenceIndicatorToolTests
 
         // Assert
         Assert.That(hSignals, Has.Count.EqualTo(1));
+        Assert.That(hSignals.FirstOrDefault()!.ToolSignalKind, Is.EqualTo(ToolSignalKind.Buy));
     }
 }
