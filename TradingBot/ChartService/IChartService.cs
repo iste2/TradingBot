@@ -29,7 +29,7 @@ public interface IChartService
 
     public event Action<DateTime> DataInitialized;
     
-    public IEnumerable<ITool> Tools { get; }
+    public IList<ITool> Tools { get; }
 
     public Task<ChartDataPoint> UpdateChart();
 

@@ -12,7 +12,7 @@ public abstract class BasicChartService : IChartService
     public ObservableCollection<ChartDataPoint> ChartDataPoints { get; } = new ObservableCollection<ChartDataPoint>();
     public event Action<ChartDataPoint>? ChartUpdated;
     public event Action<DateTime>? DataInitialized;
-    public IEnumerable<ITool> Tools { get; } = new List<ITool>();
+    public IList<ITool> Tools { get; } = new List<ITool>();
 
     public virtual Task<ChartDataPoint> UpdateChart()
     {
@@ -21,6 +21,15 @@ public abstract class BasicChartService : IChartService
 
     public virtual Task InitializeData()
     {
+        foreach (var tool in Tools)
+        {
+            for (var hI = 0; hI < ChartDataPoints.Count; hI++)
+            {
+                var hChartDataPoint = ChartDataPoints[hI];
+                tool.CalculateDataPoint(ChartDataPoints, hChartDataPoint, hI - 1);
+                tool.GenerateSignal(ChartDataPoints, hChartDataPoint, hI - 1);
+            }
+        }
         DataInitialized?.Invoke(DateTime.Now);
         return Task.CompletedTask;
     }
@@ -36,6 +45,7 @@ public abstract class BasicChartService : IChartService
             foreach (var tool in Tools)
             {
                 tool.CalculateDataPoint(ChartDataPoints, hNewChartDataPoint);
+                tool.GenerateSignal(ChartDataPoints, hNewChartDataPoint);
             }
             ChartDataPoints.Add(hNewChartDataPoint);
             if(ChartDataPoints.Count > MaxNumberOfDataPoints) ChartDataPoints.RemoveAt(0);
