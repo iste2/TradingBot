@@ -43,4 +43,6 @@ public class ChartDataPoint : IChartDataPoint
 
     public double Signal { get; set; }
     public double Macd { get; set; }
+    public double Ema12Period { get; set; }
+    public double Ema26Period { get; set; }
 }
